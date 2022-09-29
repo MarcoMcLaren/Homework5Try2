@@ -1,10 +1,14 @@
-﻿@model Homework5Try2.Models.BookDetailsVM
+﻿@model IEnumerable<Homework5Try2.Models.borrows>
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
@@ -17,27 +21,26 @@
             Brought Date
         </th>
         <th>
-            Borrowed Date
+           Name
         </th>
+        <th></th>
     </tr>
 
-    @foreach (var item in Model.borrows)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.borrowId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.takenDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.broughtDate)
-            </td>
-            <td>
-                @Model.students.Where(x => x.studentId == item.studentId).Select(p => p.name).FirstOrDefault().ToString()
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.borrowId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.takenDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.broughtDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.students.name)
+        </td>
+    </tr>
+}
 
 </table>
-

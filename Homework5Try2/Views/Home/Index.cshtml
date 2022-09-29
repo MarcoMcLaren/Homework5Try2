@@ -9,6 +9,9 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+
+
 @using (Html.BeginForm("Index", "Home", FormMethod.Post))
 {
     <div class="form-group">
@@ -54,6 +57,13 @@
         <br />
     </div>
 }
+
+
+
+
+
+
+
 <table class="table">
     <tr>
         <th>
@@ -102,7 +112,7 @@
                 UNCERTAIN
             </td>
             <td>
-                @Html.ActionLink("View", "Index", "BookDetails", new { id = item.bookId }, null)
+                @Html.ActionLink("View", "Index", "BookDetails", new { id = item.bookId }, new{ })
 
             </td>
         </tr>
