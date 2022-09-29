@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Homework5Try2.Models.books>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-4">
+                <input class="form-control mr-sm-2" name="searchtext" type="search" placeholder="Search Book Name" aria-label="Search">
+            </div>
+            <div class="col-sm-2">
+                <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                Dropdown Example
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                @foreach (var item in Model)
+                {
+                    <li>@ViewBag.TypesDropdown</li>
+                }
+            </ul>
+        </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        Dropdown Example
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        @foreach (var item in Model)
+                        {
+                            <li> @Html.DisplayFor(modelItem => item.authors.name)</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <input type="submit" class="btn btn-success" value="Search" style="width: 150px;" />
+            </div>
+            <div class="col-sm-2">
+                <input type="submit" class="btn btn-danger" value="Clear" style="width: 150px;" />
+            </div>
+        </div>
+        <br />
+    </div>
+}
+<table class="table">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Author
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Page Count
+        </th>
+        <th>
+            Points
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.bookId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.authors.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.types.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pagecount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.point)
+            </td>
+            <td>
+                UNCERTAIN
+            </td>
+            <td>
+                @Html.ActionLink("View", "Index", "BookDetails", new { id = item.bookId }, null)
+
+            </td>
+        </tr>
+    }
+
+</table>

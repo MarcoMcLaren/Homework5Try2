@@ -1,0 +1,43 @@
+﻿@model Homework5Try2.Models.BookDetailsVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<table class="table">
+    <tr>
+        <th>
+            Number
+        </th>
+        <th>
+            Taken Date
+        </th>
+        <th>
+            Brought Date
+        </th>
+        <th>
+            Borrowed Date
+        </th>
+    </tr>
+
+    @foreach (var item in Model.borrows)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.borrowId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.takenDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.broughtDate)
+            </td>
+            <td>
+                @Model.students.Where(x => x.studentId == item.studentId).Select(p => p.name).FirstOrDefault().ToString()
+            </td>
+        </tr>
+    }
+
+</table>
+
